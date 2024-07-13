@@ -15,7 +15,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<IUser>) => {
+    loginSuccess: (state, action: PayloadAction<IUser>) => {
       state.isAuthenticated = true;
       state.userInfo = action.payload;
     },
@@ -26,7 +26,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { loginSuccess, logout } = authSlice.actions;
 export const selectAuth = (state: RootState) => state.authApi;
 
 export default authSlice.reducer;

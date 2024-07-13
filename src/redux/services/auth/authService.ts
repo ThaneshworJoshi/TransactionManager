@@ -12,6 +12,7 @@ export const authApi = createApi({
         url: endpoints?.auth?.login,
         method: 'POST',
         body: credentials,
+        credentials: "omit",
       }),
     }),
     logout: builder.mutation<void, void>({

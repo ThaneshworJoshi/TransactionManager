@@ -4,7 +4,7 @@ import { FaLock, FaNetworkWired, FaUser } from "react-icons/fa";
 import LoginImage from './../../../assets/loginImage.png';
 import { TextField } from "../../atoms";
 
-const Login = ({ events }: ILoginProps) => {
+const Login = ({ data, events }: ILoginProps) => {
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
   const [ipAddress, setIpAddress] = useState('');
@@ -14,8 +14,8 @@ const Login = ({ events }: ILoginProps) => {
   };
 
   return (
-    <div className="flex h-[500px] max-w-[800px] rounded-lg">
-      <div className="md:w-1/2 flex flex-col justify-center items-center bg-gray-100 p-8 w-full">
+    <div className="flex h-[500px] max-w-[800px] rounded-lg shadow-xl">
+      <div className="md:w-1/2 flex flex-col justify-center items-center rounded-l-lg bg-white p-8 w-full">
         <h1 className="text-2xl font-bold mb-4">Login</h1>
         <div className="mb-4 w-full">
           <TextField
@@ -46,6 +46,7 @@ const Login = ({ events }: ILoginProps) => {
         </div>
         <button
           onClick={handleLogin}
+          disabled={data?.isLoading}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Login

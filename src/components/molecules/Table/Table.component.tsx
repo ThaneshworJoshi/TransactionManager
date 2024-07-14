@@ -1,6 +1,6 @@
 import { TableProps } from './Table.type';
 
-const Table = ({ headers, data, renderAction}: TableProps) => {
+const Table = ({ headers, data, renderAction }: TableProps) => {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-100 shadow-black">
@@ -14,7 +14,7 @@ const Table = ({ headers, data, renderAction}: TableProps) => {
           </tr>
         </thead>
         <tbody>
-        {data.map((row, rowIndex) => (
+          {data.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {headers.map((header) => (
                 <td key={header.key} className="py-2 px-4 border-b text-center">

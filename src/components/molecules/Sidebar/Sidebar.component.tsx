@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { SidebarProps } from './Sidebar.type';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
+import useWindowSize from '../../../hooks/useWindowSize';
 
 const Sidebar = ({ items }: SidebarProps) => {
-  const [isMinimized, setIsMinimized] = useState(false);
+  const { width } = useWindowSize();
+  const [isMinimized, setIsMinimized] = useState(width < 640);
+
+  useEffect(() => {
+    if (width < 640) {
+      setIsMinimized(true);
+    }
+  }, [width]);
 
   return (
     <div className="relative flex">

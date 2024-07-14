@@ -1,5 +1,5 @@
 import { SidebarItem } from "../components/molecules/Sidebar";
-import { FaHome, FaUser, FaCog } from 'react-icons/fa';
+import { FaUser, FaCog } from 'react-icons/fa';
 import { GrTransaction } from "react-icons/gr";
 import { MdOutlineDashboard } from "react-icons/md";
 export const sidebarItems: SidebarItem[] = [

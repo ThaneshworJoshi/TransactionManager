@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Header from '../../molecules/Header/Header.component';
 import Login from '../../organisms/Login/Login.component';
 import image from './../../../assets/logo.png';
@@ -8,8 +8,8 @@ import { useAppDispatch } from '../../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 
 const LoginTemplate = () => {
-  const [user, setUser] = useState({
-    isAuthenticated: true, // Change based on your authentication logic
+  const [user] = useState({
+    isAuthenticated: false, // Change based on your authentication logic
     name: 'John Doe',
     profileImage: {
       imageUrl: image,
@@ -19,7 +19,7 @@ const LoginTemplate = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   
-  const [login, { isLoading, isError }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
 
   const handleLogin = async (loginId: string, password: string, ipAddress: string) => {
     try {

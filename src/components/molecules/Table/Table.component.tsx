@@ -2,7 +2,7 @@ import { TableProps } from './Table.type';
 
 const Table = ({ headers, data, renderAction }: TableProps) => {
   return (
-    <table className="min-w-full bg-white border border-gray-100 shadow-black">
+    <table className="table min-w-full bg-white border border-gray-100 shadow-black">
       <thead className='bg-white shadow-sm'>
         <tr>
           {headers.map((header) => (

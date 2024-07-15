@@ -12,6 +12,15 @@ export const storeTokens = (accessToken: string, refreshToken: string) => {
 };
 
 /**
+ * Function to clear access and refresh tokens from cookies.
+ */
+export const clearTokens = () => {
+  // Remove the tokens from cookies
+  Cookies.remove('accessToken');
+  Cookies.remove('refreshToken');
+};
+
+/**
  * Retrieves access and refresh tokens from browser cookies.
  * @returns {{
 *   accessToken?: string; // The access token retrieved from cookies (optional).

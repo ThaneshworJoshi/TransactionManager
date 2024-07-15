@@ -17,7 +17,7 @@ export interface ILoginResponse {
 export interface ILoginRequest {
   email: string;
   password: string;
-  ipAddress: string;
+  ip_address: string;
 }
 
 export interface ITransaction {

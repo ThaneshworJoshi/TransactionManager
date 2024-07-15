@@ -6,6 +6,8 @@ import { useLoginMutation } from '../../../redux/services/auth/authService';
 import { loginSuccess, logout } from '../../../redux/features/auth/authSlice';
 import { useAppDispatch } from '../../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import storeTokens from '../../../utils/token';
 
 const LoginTemplate = () => {
   const [user] = useState({
@@ -23,15 +25,15 @@ const LoginTemplate = () => {
 
   const handleLogin = async (loginId: string, password: string, ipAddress: string) => {
     try {
-      const { data, error } = await login({ login_id: loginId, login_password: password, ip_address: ipAddress })
+      const { data, error } = await login({ email: loginId, password: password, ipAddress: ipAddress })
       if (data) {
-        loginSuccess(data);
-        localStorage.setItem('token', data.token);
+        dispatch(loginSuccess(data));
+        storeTokens(data.accessToken, data.refreshToken);        
+        toast.success(data?.message)
         navigate('/dashboard');
       } else {
-        //Todo show toast message
         //@ts-ignore
-        console.log(error?.data?.message)
+        toast.error(error?.data?.message)
       }
 
     } catch (error) {

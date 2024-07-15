@@ -5,9 +5,9 @@ import LoginImage from './../../../assets/loginImage.png';
 import { TextField } from "../../atoms";
 
 const Login = ({ data, events }: ILoginProps) => {
-  const [loginId, setLoginId] = useState('');
-  const [password, setPassword] = useState('');
-  const [ipAddress, setIpAddress] = useState('');
+  const [loginId, setLoginId] = useState('mausam07@yopmail.com');
+  const [password, setPassword] = useState('Test@1234');
+  const [ipAddress, setIpAddress] = useState('182.93.95.159');
 
   const handleLogin = () => {
     events?.handleLogin(loginId, password, ipAddress);

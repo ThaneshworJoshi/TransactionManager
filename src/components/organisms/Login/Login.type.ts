@@ -3,6 +3,6 @@ export interface ILoginProps {
     isLoading: boolean;
   }
   events: {
-    handleLogin: (loginId: string, password: string, ipAddress: string) => void;
+    handleLogin: (email: string, password: string, ipAddress: string) => void;
   }
 }

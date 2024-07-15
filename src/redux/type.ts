@@ -2,24 +2,20 @@
 export interface IAuthState {
   loading: boolean;
   isAuthenticated: boolean;
-  userInfo: null | any;
-  userToken: null | string;
+  accessToken: null | string;
+  refreshToken: null | string;
   error: null;
 }
 
-export interface IUser {
-  // name: string;
-  // token: string;
-  // todo add user type
-}
-
-
 export interface ILoginResponse {
-  token: string;
+  success?: boolean;
+  accessToken: string;
+  refreshToken: string;
+  message?: string;
 }
 
 export interface ILoginRequest {
-  login_id: string;
-  login_password: string;
-  ip_address: string;
+  email: string;
+  password: string;
+  ipAddress: string;
 }

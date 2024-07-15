@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAuthState, IUser } from "../../type";
+import { IAuthState, ILoginResponse } from "../../type";
 import { RootState } from "../../store";
 
 
 const initialState: IAuthState = {
   loading: false,
   isAuthenticated: false,
-  userInfo: null,
-  userToken: null,
+  accessToken: null,
+  refreshToken: null,
   error: null,
 }
 
@@ -15,13 +15,15 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    loginSuccess: (state, action: PayloadAction<IUser>) => {
+    loginSuccess: (state, action: PayloadAction<ILoginResponse>) => {
       state.isAuthenticated = true;
-      state.userInfo = action.payload;
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.userInfo = null;
+      state.accessToken = null;
+      state.refreshToken = null;
     },
   },
 });

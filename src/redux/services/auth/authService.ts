@@ -5,7 +5,7 @@ import { externalApiEndpoints as endpoints } from '../../../constants/externalAp
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: endpoints.base }),
+  baseQuery: fetchBaseQuery({ baseUrl: endpoints.baseUrl }),
   endpoints: (builder) => ({
     login: builder.mutation<ILoginResponse, ILoginRequest>({
       query: (credentials) => ({

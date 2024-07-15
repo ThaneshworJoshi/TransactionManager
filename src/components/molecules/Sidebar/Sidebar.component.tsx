@@ -8,9 +8,10 @@ import useWindowSize from '../../../hooks/useWindowSize';
 const Sidebar = ({ items }: SidebarProps) => {
   const { width } = useWindowSize();
   const [isMinimized, setIsMinimized] = useState(width < 640);
+  const disableSidebarToggle = width < 768; // Disable sidebar toggle for devices below tablet size
 
   useEffect(() => {
-    if (width < 640) {
+    if (disableSidebarToggle) {
       setIsMinimized(true);
     }
   }, [width]);
@@ -40,8 +41,9 @@ const Sidebar = ({ items }: SidebarProps) => {
         </nav>
       </div>
       <button
+        disabled={disableSidebarToggle}
         onClick={() => setIsMinimized(!isMinimized)}
-        className="absolute right-[-15px] top-28  transform -translate-y-1/2 bg-gray-200 hover:bg-[#9B8DF5] p-2 border border-gray-300 rounded-full"
+        className={`absolute right-[-15px] top-28  transform -translate-y-1/2 bg-gray-200 hover:${disableSidebarToggle ? 'bg-gray-100' : 'bg-[#9B8DF5]'} p-2 border border-gray-300 rounded-full`}
       >
         {isMinimized ? <FaChevronRight /> : <FaChevronLeft />}
       </button>

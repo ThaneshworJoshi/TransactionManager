@@ -2,6 +2,8 @@ import { SidebarItem } from "../components/molecules/Sidebar";
 import { FaUser, FaCog } from 'react-icons/fa';
 import { GrTransaction } from "react-icons/gr";
 import { MdOutlineDashboard } from "react-icons/md";
+
+export const ROW_PER_PAGE = 5;
 export const sidebarItems: SidebarItem[] = [
   {
     title: 'Dashboard',

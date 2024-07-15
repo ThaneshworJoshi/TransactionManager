@@ -5,8 +5,8 @@ const Table = ({ headers, data, renderAction }: TableProps) => {
     <table className="table min-w-full bg-white border border-gray-100 shadow-black">
       <thead className='bg-white shadow-sm'>
         <tr>
-          {headers.map((header) => (
-            <th key={header.key} className="py-2 px-1  top-0 left-0 border-b border-gray-200 bg-gray-100 w-16 text-center z-10 min-w-24">
+          {headers.map((header, index) => (
+            <th key={header.key} className={`py-2 px-1  top-0 left-0 border-b border-gray-200 bg-gray-100 w-16 text-center z-10  ${index ? 'min-w-44' : 'min-w-24'}`}>
               {header.label}
             </th>
           ))}
@@ -16,8 +16,8 @@ const Table = ({ headers, data, renderAction }: TableProps) => {
         {data.map((row, rowIndex) => (
           <>
             <tr key={rowIndex}>
-              {headers.map((header) => (
-                <td key={header.key} className="py-2 px-4 border-b text-center">
+              {headers.map((header, index) => (
+                <td key={header.key} className={`py-2 px-4 border-b text-center ${index ? 'min-w-44' : 'min-w-24'}`}>
                   {row[header.key]}
                 </td>
               ))}

@@ -19,3 +19,35 @@ export interface ILoginRequest {
   password: string;
   ipAddress: string;
 }
+
+export interface ITransaction {
+  _id: string;
+  amount: number;
+  date: string;
+  type: 'credit' | 'debit';
+  status: 'pending' | 'completed' | 'failed';
+  description: string;
+  __v: number;
+}
+
+export interface IPagination {
+  currentPage: number;
+  totalPages: number;
+  perPage: number;
+  totalCount: number;
+}
+
+export interface ITransactionResponse {
+  success: boolean;
+  data: {
+    transactions: ITransaction[];
+    pagination: IPagination;
+  };
+}
+
+export interface ITransactionState {
+  loading: boolean;
+  transactions: ITransaction[];
+  pagination: IPagination;
+  error?: string | null;
+}

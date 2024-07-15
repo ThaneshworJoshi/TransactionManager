@@ -25,7 +25,7 @@ const AdminLayout = ({ title, children }: AdminLayoutProps) => {
                 <h1 className="text-2xl font-bold mb-10">{title}</h1>
                 {children && children}
               </main>
-            </div>w
+            </div>
           </div>
         </div>
       </div>

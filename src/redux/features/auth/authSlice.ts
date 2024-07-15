@@ -29,6 +29,6 @@ const authSlice = createSlice({
 });
 
 export const { loginSuccess, logout } = authSlice.actions;
-export const selectAuth = (state: RootState) => state.authApi;
+export const selectAuth = (state: RootState) => state.auth;
 
 export default authSlice.reducer;

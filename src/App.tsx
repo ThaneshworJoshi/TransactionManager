@@ -10,6 +10,7 @@ import { loginSuccess } from './redux/features/auth/authSlice';
 import { useEffect } from 'react';
 import PrivateRoute from './common/components/PrivateRoute';
 import useMount from './hooks/useMount';
+import Loader from './components/molecules/Loader/Loader.componet';
 
 function App() {
 
@@ -25,8 +26,8 @@ function App() {
     }
   }, [dispatch]);
 
-  if(isComponentLoading) {
-    return <div>Loading...</div>
+  if (isComponentLoading) {
+    return <Loader />
   }
 
   return (

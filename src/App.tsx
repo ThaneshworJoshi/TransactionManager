@@ -8,10 +8,13 @@ import TransactionTemplate from './components/templates/TransactionTemplate/Tran
 import { useAppDispatch } from './redux/hooks';
 import { loginSuccess } from './redux/features/auth/authSlice';
 import { useEffect } from 'react';
+import PrivateRoute from './common/components/PrivateRoute';
+import useMount from './hooks/useMount';
 
 function App() {
 
   const dispatch = useAppDispatch();
+  const isComponentLoading = useMount()
 
   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
@@ -22,14 +25,20 @@ function App() {
     }
   }, [dispatch]);
 
+  if(isComponentLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <BrowserRouter>
         <ErrorBoundary>
           <Routes>
             <Route path="/login" element={<LoginTemplate />} />
-            <Route path="/dashboard" element={<DashboardTemplate />} />
-            <Route path="/transactions" element={<TransactionTemplate />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<DashboardTemplate />} />
+              <Route path="/transactions" element={<TransactionTemplate />} />
+            </Route>
           </Routes>
         </ErrorBoundary>
       </BrowserRouter>

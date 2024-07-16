@@ -13,6 +13,7 @@ import Loader from './components/molecules/Loader/Loader.componet';
 import { getTokensFromCookies } from './utils/token';
 import ProfileTemplate from './components/templates/ProfileTemplate/ProfileTemplate';
 import SettingTemplate from './components/templates/SettingTemplate/SettingTemplate';
+import NotFoundTemplate from './components/templates/NotFoundTemplate/NotFoundTemplate';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
               <Route path="/profile" element={<ProfileTemplate />} />
               <Route path="/settings" element={<SettingTemplate />} />
             </Route>
+            <Route path="*" element={<NotFoundTemplate />} />
           </Routes>
         </ErrorBoundary>
       </BrowserRouter>

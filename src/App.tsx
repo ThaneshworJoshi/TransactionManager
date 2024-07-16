@@ -11,6 +11,8 @@ import PrivateRoute from './common/components/PrivateRoute';
 import useMount from './hooks/useMount';
 import Loader from './components/molecules/Loader/Loader.componet';
 import { getTokensFromCookies } from './utils/token';
+import ProfileTemplate from './components/templates/ProfileTemplate/ProfileTemplate';
+import SettingTemplate from './components/templates/SettingTemplate/SettingTemplate';
 
 function App() {
 
@@ -39,6 +41,8 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/dashboard" element={<DashboardTemplate />} />
               <Route path="/transactions" element={<TransactionTemplate />} />
+              <Route path="/profile" element={<ProfileTemplate />} />
+              <Route path="/settings" element={<SettingTemplate />} />
             </Route>
           </Routes>
         </ErrorBoundary>

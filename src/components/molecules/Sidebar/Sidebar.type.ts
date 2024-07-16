@@ -7,5 +7,6 @@ export interface SidebarItem {
 }
 
 export interface SidebarProps {
-  items: Array<SidebarItem>
+  items: Array<SidebarItem>;
+  events: { handleLogout: () => void; }
 }

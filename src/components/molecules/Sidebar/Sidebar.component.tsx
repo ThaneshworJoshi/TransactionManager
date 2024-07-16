@@ -4,8 +4,9 @@ import { SidebarProps } from './Sidebar.type';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
 import useWindowSize from '../../../hooks/useWindowSize';
+import { IoLogOut } from "react-icons/io5";
 
-const Sidebar = ({ items }: SidebarProps) => {
+const Sidebar = ({ items, events }: SidebarProps) => {
   const { width } = useWindowSize();
   const [isMinimized, setIsMinimized] = useState(width < 640);
   const disableSidebarToggle = width < 768; // Disable sidebar toggle for devices below tablet size
@@ -38,6 +39,14 @@ const Sidebar = ({ items }: SidebarProps) => {
               {!isMinimized && <span className="ml-4">{item.title}</span>}
             </NavLink>
           ))}
+          <button
+            title='Logout'
+            onClick={events?.handleLogout}
+            className={'flex items-center p-4 my-2 mx-4 rounded transition-colors duration-300 font-bold  hover:bg-[#9B8DF5] text-black'}
+          >
+            <IoLogOut className="text-2xl" />
+            {!isMinimized && <span className="ml-4">Logout</span>}
+          </button>
         </nav>
       </div>
       <button

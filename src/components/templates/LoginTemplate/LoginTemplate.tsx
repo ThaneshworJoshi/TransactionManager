@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import Header from '../../molecules/Header/Header.component';
 import Login from '../../organisms/Login/Login.component';
-import image from './../../../assets/logo.png';
 import { useLoginMutation } from '../../../redux/services/auth/authService';
-import { loginSuccess, logout, selectAuth } from '../../../redux/features/auth/authSlice';
+import { loginSuccess, selectAuth } from '../../../redux/features/auth/authSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { clearTokens, storeTokens } from '../../../utils/token';
+import { storeTokens } from '../../../utils/token';
 
 const LoginTemplate = () => {
   const navigate = useNavigate();
@@ -24,7 +22,8 @@ const LoginTemplate = () => {
         toast.success(data?.message)
         navigate('/dashboard');
       } else {
-        //@ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-expect-error
         toast.error(error?.data?.message)
       }
 

@@ -14,6 +14,7 @@ import { getTokensFromCookies } from './utils/token';
 import ProfileTemplate from './components/templates/ProfileTemplate/ProfileTemplate';
 import SettingTemplate from './components/templates/SettingTemplate/SettingTemplate';
 import NotFoundTemplate from './components/templates/NotFoundTemplate/NotFoundTemplate';
+import HomeTemplate from './components/templates/HomeTemplate/HomeTemplate';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
       <BrowserRouter>
         <ErrorBoundary>
           <Routes>
+            <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <HomeTemplate />} />
             <Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <LoginTemplate />} />
             <Route element={<PrivateRoute />}>
               <Route path="/dashboard" element={<DashboardTemplate />} />

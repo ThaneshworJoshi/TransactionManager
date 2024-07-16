@@ -1,16 +1,15 @@
-import Header from '../../molecules/Header/Header.component';
 import Login from '../../organisms/Login/Login.component';
 import { useLoginMutation } from '../../../redux/services/auth/authService';
-import { loginSuccess, selectAuth } from '../../../redux/features/auth/authSlice';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { loginSuccess } from '../../../redux/features/auth/authSlice';
+import { useAppDispatch } from '../../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { storeTokens } from '../../../utils/token';
+import CommonLayout from '../../../common/components/Layouts/CommonLayout/CommonLayout';
 
 const LoginTemplate = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const user  = useAppSelector(selectAuth);
   const [login, { isLoading }] = useLoginMutation();
 
   const handleLogin = async (loginId: string, password: string, ipAddress: string) => {
@@ -33,12 +32,11 @@ const LoginTemplate = () => {
   }
 
   return (
-    <>
-      <Header user={user} />
+    <CommonLayout>
       <div className="flex justify-center mt-20">
         <Login data={{ isLoading }} events={{ handleLogin }} />
       </div>
-    </>
+    </CommonLayout>
   )
 }
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { HeaderProps } from './Header.type';
 import logo from './../../../assets/logo.png';
 import { FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Header = ({ user, events }: HeaderProps) => {
   const { isAuthenticated, name, profileImage } = user;
@@ -32,7 +33,7 @@ const Header = ({ user, events }: HeaderProps) => {
               <FaSearch className="absolute left-3 text-gray-400" />
             </div>
           </div>
-            : <img src={logo} className="w-[70px] rounded-full" alt="TransactionManager" />
+            : <Link to={'/'}> <img src={logo} className="w-[70px] rounded-full" alt="TransactionManager" /></Link>
           }
         </div>
         {isAuthenticated ? (
@@ -60,9 +61,9 @@ const Header = ({ user, events }: HeaderProps) => {
             )}
           </div>
         ) : (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <Link to={'/login'} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Login
-          </button>
+          </Link>
         )}
       </div>
     </header>

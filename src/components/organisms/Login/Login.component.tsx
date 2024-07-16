@@ -3,12 +3,13 @@ import { ILoginProps } from "./Login.type";
 import { FaLock, FaNetworkWired, FaUser } from "react-icons/fa";
 import LoginImage from './../../../assets/loginImage.png';
 import { TextField } from "../../atoms";
+import { isValidIpAddress } from "../../../utils";
 
 const Login = ({ data, events }: ILoginProps) => {
   const [formState, setFormState] = useState({
-    loginId: 'mausam07@yopmail.com',
-    password: 'Test@1234',
-    ipAddress: '182.93.95.159'
+    loginId: '',
+    password: '',
+    ipAddress: ''
   });
   const [errors, setErrors] = useState<{ loginId?: string; password?: string; ipAddress?: string }>({});
 
@@ -16,12 +17,16 @@ const Login = ({ data, events }: ILoginProps) => {
     const newErrors: { loginId?: string; password?: string; ipAddress?: string } = {};
     if (!formState.loginId) newErrors.loginId = 'Email is required';
     if (!formState.password) newErrors.password = 'Password is required';
-    if (!formState.ipAddress) newErrors.ipAddress = 'IP Address is required';
-
+    if (!formState.ipAddress) {
+      newErrors.ipAddress = 'IP Address is required';
+    } else if (!isValidIpAddress(formState.ipAddress)) {
+      newErrors.ipAddress = 'Invalid IP Address format';
+    } 
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0; // Return true if no errors
   };
+
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

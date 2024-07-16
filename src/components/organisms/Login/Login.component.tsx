@@ -5,12 +5,35 @@ import LoginImage from './../../../assets/loginImage.png';
 import { TextField } from "../../atoms";
 
 const Login = ({ data, events }: ILoginProps) => {
-  const [loginId, setLoginId] = useState('mausam07@yopmail.com');
-  const [password, setPassword] = useState('Test@1234');
-  const [ipAddress, setIpAddress] = useState('182.93.95.159');
+  const [formState, setFormState] = useState({
+    loginId: 'mausam07@yopmail.com',
+    password: 'Test@1234',
+    ipAddress: '182.93.95.159'
+  });
+  const [errors, setErrors] = useState<{ loginId?: string; password?: string; ipAddress?: string }>({});
+
+  const validate = () => {
+    const newErrors: { loginId?: string; password?: string; ipAddress?: string } = {};
+    if (!formState.loginId) newErrors.loginId = 'Email is required';
+    if (!formState.password) newErrors.password = 'Password is required';
+    if (!formState.ipAddress) newErrors.ipAddress = 'IP Address is required';
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0; // Return true if no errors
+  };
+
+  const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    console.log(name, value)
+    setFormState(prevState => ({ ...prevState, [name]: value }));
+    setErrors(prevErrors => ({ ...prevErrors, [name]: undefined }));
+  };
 
   const handleLogin = () => {
-    events?.handleLogin(loginId, password, ipAddress);
+    if (validate()) {
+      events?.handleLogin(formState.loginId, formState.password, formState.ipAddress);
+    }
   };
 
   return (
@@ -21,27 +44,33 @@ const Login = ({ data, events }: ILoginProps) => {
           <TextField
             type="email"
             placeholder="Email"
-            value={loginId}
-            onChange={(e) => setLoginId(e.target.value)}
+            name="loginId" // Add name prop
+            value={formState.loginId}
+            onChange={handleFieldChange}
             icon={<FaUser />}
+            error={errors.loginId}
           />
         </div>
         <div className="mb-4 w-full">
           <TextField
             type="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password" // Add name prop
+            value={formState.password}
+            onChange={handleFieldChange}
             icon={<FaLock />}
+            error={errors.password}
           />
         </div>
         <div className="mb-4 w-full">
           <TextField
             type="text"
             placeholder="IP Address"
-            value={ipAddress}
-            onChange={(e) => setIpAddress(e.target.value)}
+            name="ipAddress" // Add name prop
+            value={formState.ipAddress}
+            onChange={handleFieldChange}
             icon={<FaNetworkWired />}
+            error={errors.ipAddress}
           />
         </div>
         <button

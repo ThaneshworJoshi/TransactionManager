@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Sidebar from '../../molecules/Sidebar/Sidebar.component'
 import { sidebarItems } from '../../../constants'
 import Header from '../../molecules/Header/Header.component'
